@@ -68,7 +68,7 @@ Use [svgcleaner](https://github.com/RazrFalcon/svgcleaner)
 1. Clone the repository:
     ```
     cd /opt
-    git clone https://github.com/dracula/qbittorrent.git
+    git clone https://github.com/MahdiMirzade/qbittorrent.git
     chmod -R 777 qbittorrent
     ```
 2. Enable theme selection from menu: → Tools → Options → Web UI → Use alternative Web UI.
