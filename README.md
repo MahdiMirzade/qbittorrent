@@ -74,6 +74,13 @@ Use [svgcleaner](https://github.com/RazrFalcon/svgcleaner)
 2. Enable theme selection from menu: → Tools → Options → Web UI → Use alternative Web UI.
 3. In 'Files locations' bar, you should type `/opt/qbittorrent/webui` .
 
+#### Troubleshooting WebUI Theme (Server)
+If you found you have put the file/folder in the wrong spot and get the error `Unacceptable file type, only regular file is allowed`
+* Append the following after the url/port in your browser and then refresh (this clears the webui setting back to disabled):
+```
+/api/v2/app/setPreferences?json=%7B%22alternative_webui_enabled%22:false%7D
+```
+
 ### Screenshots
 ![Screenshot WebUI](./screenshot.webui.png)
 
