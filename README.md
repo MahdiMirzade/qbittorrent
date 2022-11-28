@@ -1,24 +1,36 @@
 # QBittorrent Theme
 [qBittorrent](https://qbittorrent.org/) is a cross-platform free and open-source BitTorrent client.
 
-[How to create your theme? - Reference](https://github.com/qbittorrent/qBittorrent/wiki/Create-custom-themes-for-qBittorrent)
-
-This theme is added to [qbittorrent](https://github.com/qbittorrent/qBittorrent)'s wiki page on github. [Click Here](https://github.com/qbittorrent/qBittorrent/wiki/List-of-known-qBittorrent-themes)
-
 ---
 
 ## Application Theme (Client)
 
 ### Usage
-1. Enable theme selection from menu:
-→ Tools → Options → Behavior → Interface → Use custom UI Theme
-2. In 'UI Theme file' click on the file icon and select your '.qbtheme' file
-3. Restart qbittorrent to apply theme
+1. Download your chosen theme:
+- [dracula](./dracula.qbtheme)
+- [gruvbox-dark](./gruvbox-dark.qbtheme)
+- [onedark](./onedark.qbtheme)
+
+2. Go to your qBittorrent application:
+   1. Enable theme selection from menu. (Tools -> Options -> Behavior -> Interface -> Use custom UI Theme)
+   2. In `UI Theme file` click on the file icon and in the file picker, select your `.qbtheme` file. 
+   3. Restart qbittorrent to apply theme.
 
 ### Screenshots
-![Screenshot](./screenshot.png)
+> dracula.qbtheme
+![qbittorrent dracula theme](screenshots/client.dracula.png)
 
-### Development
+> gruvbox-dark.qbtheme
+![qbittorrent gruvbox theme](screenshots/client.gruvbox.png)
+
+> onedark.qbtheme
+![qbittorrent onedark theme](screenshots/client.onedark.png)
+
+### Theme Development
+[How to create your theme? - Reference](https://github.com/qbittorrent/qBittorrent/wiki/Create-custom-themes-for-qBittorrent)
+
+This theme is added to [qbittorrent](https://github.com/qbittorrent/qBittorrent)'s wiki page on github. [Click Here](https://github.com/qbittorrent/qBittorrent/wiki/List-of-known-qBittorrent-themes)
+
 Qbittorrent theme is orginally a single '.qbtheme' file
 that you can select and use in qbittorrent preferences,
 which you need to compile a '.qrc' file with [rcc](https://doc.qt.io/qt-5/rcc.html).
@@ -27,37 +39,38 @@ You can edit stylesheet.qss, config.json to start
 making your very own qbittorrent theme!
 
 My theme contains:
-| Name			| Desc				|
-| --------------------- | ----------------------------- |
-| Icons/		| Contains GUI Icons		|
-| Icons/qss/		| // //				|
-| stylesheet.qss	| Full theming			|
-| config.json		| Custom GUI colors		|
-| resources.qrc		| Resources for compiling	|
 
-### Compile
-Compiling this theme requires [rss](https://doc.qt.io/qt-5/rcc.html).
+| Name			| Desc				                          |
+| --------------------- |-----------------------------------|
+| resources.qrc		| Resources for compiling	          |
+| stylesheet.qss.in	| stylesheet's template		           |
+| config.json.in	| GUI colors template		             |
+| stylesheet.qss	| stylesheet (dracula by default)		 |
+| config.json		| GUI colors (dracula by default)		 |
 
-You can install this tool with:
-```
-$ pacman -S qt5-base
-```
+#### Compile
+Compiling this theme requires [rcc](https://doc.qt.io/qt-5/rcc.html).
 
 Now we can generate our theme:
 ```
-$ rcc resources.qrc -o example.qbtheme -binary
-# resouces.qrc: list of the files
-# example.qbtheme: name of your theme
+ $ rcc resources.qrc -o example.qbtheme -binary
+// resouces.qrc: list of the files
+// example.qbtheme: name of your theme
 ```
 
-### Icons
-Icons are based on the `Font-Awesome` icon-set: [link](http://fontawesome.io/icons/).
+#### Theme Generator
+I've made [a script](./src/generate.sh), which uses your `~/.Xresources` file, in order to generate a QBittorrent theme file.
+```
+ $ chmod +x generate.sh
+ $ ./generate.sh
+// creates `example.qbtheme` from your `~/.Xresources`.
+ $ ./generate.sh nord.qbtheme
+// creates `nord.qbtheme`.
+```
 
-If you need to add an icon that qBittorrent does not already use, you can take an icon from the SVG fork of `Font-Awesome`: [link](https://github.com/encharm/Font-Awesome-SVG-PNG).
-
-#### Optimizing SVG
-
-Use [svgcleaner](https://github.com/RazrFalcon/svgcleaner)
+#### TODO
+- [ ] theme generator should read colors from a file. Not the `~/.Xresources`. (since non-Xorg systems won't work, like wayland)
+- [ ] make better color implementation for stylesheet.
 
 ---
 
@@ -82,7 +95,7 @@ If you found you have put the file/folder in the wrong spot and get the error `U
 ```
 
 ### Screenshots
-![Screenshot WebUI](./screenshot.webui.png)
+![Screenshot WebUI](screenshots/webui.dracula.png)
 
 ### Developement
 From qBittorrent v4.1.0 and on, the WebUI architecture was expanded to allow the use of alternate sets of WebUI sources, allowing customization of the WebUI and usage of community developed alternatives.
